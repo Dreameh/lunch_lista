@@ -94,7 +94,7 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext context) {
     bloc.fetchAllRestaurants();
 
-    // Bottom Navigation List
+/*     // Bottom Navigation List
     final bottomNav = Container(
         height: 55.0,
         child: BottomAppBar(
@@ -111,7 +111,7 @@ class _ListPageState extends State<ListPage> {
               onPressed: () {},
             )
           ],
-        )));
+        ))); */
 
     return Scaffold(
         //backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
