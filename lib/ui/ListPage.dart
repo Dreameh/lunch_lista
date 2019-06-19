@@ -3,6 +3,7 @@ import 'package:lunch_lista/blocs/restaurant_bloc.dart';
 import 'package:lunch_lista/models/Results.dart';
 import 'package:intl/intl.dart';
 import 'package:lunch_lista/ui/ListDetails.dart';
+import 'package:lunch_lista/utils/Weekday.dart';
 
 class ListPage extends StatefulWidget {
   ListPage({Key key, this.title}) : super(key: key);
@@ -16,7 +17,22 @@ class ListPage extends StatefulWidget {
 class _ListPageState extends State<ListPage> {
   Widget bodyContent(AsyncSnapshot<dynamic> snapshot) {
     List<Restaurant> restaurants = snapshot.data.cache.restaurants;
+    var now = new DateTime.now();
 
+    if(now.weekday == DateTime.saturday || now.weekday == DateTime.sunday) {
+      return Container(
+        child:
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("Ingen lunch idag, kom tillbaks på måndag!\n", style: TextStyle(fontSize: 48, color: Colors.black38), textAlign: TextAlign.center),
+              Icon(Icons.wb_sunny, color: Colors.yellow, size: 40.0)
+            ],
+          )
+        )
+      );
+    } else {
     return Container(
         child:
       ListView.builder(
@@ -27,15 +43,22 @@ class _ListPageState extends State<ListPage> {
             return restaurantCard(restaurants, index, context);
           })
     );
+    }
   }
+
+  Widget restaurantImage(String imageurl) {
+    return imageurl.isEmpty ?
+    Image.asset('placeholder.png', width: 130, height: 150) : 
+    Image.network(imageurl, width: 130, height: 150);
+  }
+  
 
   Widget restaurantCard(List<Restaurant> restaurants, int index, BuildContext context) {
     final makeListTile = ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
         leading: Container(
           padding: EdgeInsets.only(right: 12.0),
-          child:
-              Image.network(restaurants[index].image, width: 130, height: 150),
+          child: restaurantImage(restaurants[index].image),
         ),
         title: Text(
           restaurants[index].name,
@@ -55,12 +78,13 @@ class _ListPageState extends State<ListPage> {
 
   Widget topBar() {
     var now = new DateTime.now();
+    
 
     return AppBar(
       elevation: 0.5,
       backgroundColor: Color.fromRGBO(250, 250, 250, 1.0),
       title: Text(
-        "Lunch för " + new DateFormat("dd.MM.yyyy").format(now),
+        "Lunch för " + new DateFormat("dd.MM.yyyy").format(now) + " (${Weekday.currentDay(now.weekday)})",
         style: TextStyle(color: Colors.black26),
       ),
     );

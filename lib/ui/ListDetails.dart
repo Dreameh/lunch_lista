@@ -126,7 +126,7 @@ class Content extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.only(left: 10.0, right: 10.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceAround,

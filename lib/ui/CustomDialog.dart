@@ -22,7 +22,6 @@ class CustomDialog extends StatelessWidget {
             left: Consts.padding,
             right: Consts.padding,
           ),
-          margin: EdgeInsets.only(top: Consts.avatarRadius),
           decoration: new BoxDecoration(
             color: Colors.white,
             shape: BoxShape.rectangle,
@@ -45,7 +44,7 @@ class CustomDialog extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(height: 16.0),
+              //SizedBox(height: 16.0),
               HtmlWidget(
                 description, webView: true
               ),
@@ -61,6 +60,7 @@ class CustomDialog extends StatelessWidget {
               ),
             ],
           ),
+          
         ),
       ],
     );
