@@ -29,7 +29,7 @@ class ListDetails extends StatelessWidget {
     final header = Stack(children: <Widget>[
       Container(
           padding: EdgeInsets.only(left: 10.0),
-          height: MediaQuery.of(context).size.height * 0.4,
+          height: MediaQuery.of(context).size.height * 0.35,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               image: DecorationImage(
@@ -37,7 +37,7 @@ class ListDetails extends StatelessWidget {
             fit: BoxFit.cover,
           ))),
       Container(
-        height: MediaQuery.of(context).size.height * 0.4,
+        height: MediaQuery.of(context).size.height * 0.35,
         padding: EdgeInsets.all(10.0),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, .9)),
@@ -107,14 +107,22 @@ class ListDetails extends StatelessWidget {
                       ),
                 );
               },
-            )
+            ),
           ],
         ));
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      body: Column(
-        children: <Widget>[header, headerMenu, Content(restaurant: restaurant)],
+      body: Material(
+        child: Container(
+          child: new SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(),
+              child: Column(
+                children: <Widget>[header, headerMenu, Content(restaurant: restaurant)]),
+            ),
+          ),
+        ),
       ),
     );
   }
