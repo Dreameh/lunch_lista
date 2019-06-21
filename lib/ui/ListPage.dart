@@ -16,11 +16,11 @@ class ListPage extends StatefulWidget {
 
 class _ListPageState extends State<ListPage> {
   Widget bodyContent(AsyncSnapshot<dynamic> snapshot) {
+    List<Restaurant> restaurantList = snapshot.data.cache.restaurants;
     // Filtering the restaurantList for the ListView
     List<Restaurant> restaurants = List();
-    restaurants.addAll(snapshot.data.cache.restaurants
-        .where((f) => f.address.contains("Mariehamn"))
-        .toList());
+    restaurants.addAll(
+        restaurantList.where((f) => f.address.contains("Mariehamn")).toList());
 
     var now = new DateTime.now();
 
@@ -94,35 +94,16 @@ class _ListPageState extends State<ListPage> {
             " (${Weekday.currentDay(now.weekday)})",
         style: TextStyle(color: Colors.black45, fontSize: 16),
       ),
-      actions: <Widget>[
+/*       actions: <Widget>[
         IconButton(
             icon: Icon(Icons.settings), color: Colors.black38, onPressed: () {})
-      ],
+      ], */
     );
   }
 
   @override
   Widget build(BuildContext context) {
     bloc.fetchAllRestaurants();
-
-/*     // Bottom Navigation List
-    final bottomNav = Container(
-        height: 55.0,
-        child: BottomAppBar(
-            //color: Color.fromRGBO(58, 66, 86, 1.0),
-            child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.home, color: Colors.black26),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.settings, color: Colors.black26),
-              onPressed: () {},
-            )
-          ],
-        ))); */
 
     return Scaffold(
         appBar: topBar(),
