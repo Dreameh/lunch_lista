@@ -7,10 +7,9 @@ class Results {
 
   factory Results.fromJson(Map<String, dynamic> json) {
     return Results(
-      status: json['status'],
-      message: json['message'],
-      cache: Cache.fromJson(json['cache'])
-    );
+        status: json['status'],
+        message: json['message'],
+        cache: Cache.fromJson(json['cache']));
   }
 
   List<Restaurant> get restaurants => cache.restaurants;
@@ -27,18 +26,19 @@ class Cache {
   int timestamp;
   List<Restaurant> restaurants;
 
-  Cache({this.day, this.weekNumber, this.date, this.timestamp, this.restaurants});
+  Cache(
+      {this.day, this.weekNumber, this.date, this.timestamp, this.restaurants});
 
   factory Cache.fromJson(Map<String, dynamic> json) {
     var list = json['restaurants'] as List;
-    List<Restaurant> restaurantList = list.map((i) => Restaurant.fromJson(i)).toList();
+    List<Restaurant> restaurantList =
+        list.map((i) => Restaurant.fromJson(i)).toList();
     return Cache(
-      day: json['day'],
-      weekNumber: json['week_number'],
-      date: json['date'],
-      timestamp: json['timestamp'],
-      restaurants: restaurantList
-    );
+        day: json['day'],
+        weekNumber: json['week_number'],
+        date: json['date'],
+        timestamp: json['timestamp'],
+        restaurants: restaurantList);
   }
 }
 
@@ -52,19 +52,25 @@ class Restaurant {
   String phone;
   String menu;
 
-  Restaurant({this.id, this.image, this.website, this.name, this.info, this.address, this.phone, this.menu});
+  Restaurant(
+      {this.id,
+      this.image,
+      this.website,
+      this.name,
+      this.info,
+      this.address,
+      this.phone,
+      this.menu});
 
-    factory Restaurant.fromJson(Map<String, dynamic> json) {
+  factory Restaurant.fromJson(Map<String, dynamic> json) {
     return Restaurant(
-      id: json['id'],
-      image: json['image'],
-      website: json['website'],
-      name: json['name'],
-      info: json['info'],
-      address: json['address'],
-      phone: json['phone'],
-      menu: json['menu']
-    );
+        id: json['id'],
+        image: json['image'],
+        website: json['website'],
+        name: json['name'],
+        info: json['info'],
+        address: json['address'],
+        phone: json['phone'],
+        menu: json['menu']);
   }
 }
-

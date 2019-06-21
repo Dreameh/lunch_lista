@@ -45,22 +45,24 @@ class CustomDialog extends StatelessWidget {
                 ),
               ),
               //SizedBox(height: 16.0),
-              HtmlWidget(
-                description, webView: true
-              ),
+              HtmlWidget(description, webView: true),
               SizedBox(height: 24.0),
               Align(
-                alignment: Alignment.bottomRight,
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(); // To close the dialog
-                  },
-                  child: Text(buttonText),
-                ),
-              ),
+                  alignment: Alignment.bottomCenter,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: RaisedButton(
+                      color: Colors.blue[400],
+                      elevation: 0,
+                      textColor: Colors.white,
+                      onPressed: () {
+                        Navigator.of(context).pop(); // To close the dialog
+                      },
+                      child: Text(buttonText),
+                    ),
+                  )),
             ],
           ),
-          
         ),
       ],
     );

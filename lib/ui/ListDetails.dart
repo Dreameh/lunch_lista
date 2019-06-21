@@ -12,7 +12,6 @@ class ListDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final headerText = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -118,8 +117,11 @@ class ListDetails extends StatelessWidget {
           child: new SingleChildScrollView(
             child: ConstrainedBox(
               constraints: BoxConstraints(),
-              child: Column(
-                children: <Widget>[header, headerMenu, Content(restaurant: restaurant)]),
+              child: Column(children: <Widget>[
+                header,
+                headerMenu,
+                Content(restaurant: restaurant)
+              ]),
             ),
           ),
         ),
@@ -139,7 +141,8 @@ class Content extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            HtmlWidget(restaurant.menu, webView: true, textStyle: TextStyle(fontSize: 14.0)),
+            HtmlWidget(restaurant.menu,
+                webView: true, textStyle: TextStyle(fontSize: 14.0)),
           ],
         ));
   }
